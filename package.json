@@ -1,0 +1,23 @@
+{
+  "name": "week_12",
+  "version": "1.0.0",
+  "description": "\"# Week_12\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beebegun2/Week_12.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beebegun2/Week_12/issues"
+  },
+  "homepage": "https://github.com/beebegun2/Week_12#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.2",
+    "jquery": "^3.6.1"
+  }
+}
