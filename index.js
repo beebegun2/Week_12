@@ -31,7 +31,7 @@ class HouseService {
         return $.post(this.url, house);
     }
 
-    static udpateHouse(house) {
+    static updateHouse(house) {
         return $.ajax({
             url: this.url + `/${house._id}`,
             dataType: 'json',
@@ -76,7 +76,7 @@ class DOMManager {
     for (let house of this.houses) {
         if (house._id == id) {
             house.rooms.push(new Room($(`#${house._id}-room-name`).val(), $(`#${house._id}-room-area`).val()));
-            HouseService.udpateHouse(house) 
+            HouseService.updateHouse(house) 
                 .then(() => {
                     return HouseService.getAllHouses();
                 }) 
@@ -91,7 +91,7 @@ class DOMManager {
                 for (let room of house.rooms) {
                     if (room._id == roomId) {
                         house.rooms.splice(house.rooms.indexOf(room), 1);
-                        HouseService.udpateHouse(house)
+                        HouseService.updateHouse(house)
                         .then(() => {
                             return HouseService.getAllHouses();
                         })
@@ -101,7 +101,7 @@ class DOMManager {
             }
         }
     }
-     
+
     static render(houses) {
         this.houses = houses;
         $('#app').empty();
@@ -133,7 +133,7 @@ class DOMManager {
                 `<p>
                 <span id="name-${room._id}"><strong>Name: </strong> ${room.name}</span>
                 <span id="name-${room._id}"><strong>Area: </strong> ${room.area}</span>
-                <button class="btn btn-danger" onclick="DOMManager.deleteRoom('${house._id}',${room._id}')">Delete Room</button>`
+                <button class="btn btn-danger" onclick="DOMManager.deleteRoom('${house._id}','${room._id}')">Delete Room</button>`
 
             )
          }
