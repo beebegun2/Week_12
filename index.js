@@ -1,7 +1,7 @@
 class House {
     constructor(name){
         this.name = name;
-        this.romms = [];
+        this.rooms = [];
     }
 
     addRoom(name, area) {

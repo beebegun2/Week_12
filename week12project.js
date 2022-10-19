@@ -1,7 +1,7 @@
 class Tea {
     constructor(name){
         this.name = name;
-        this.romms = [];
+        this.flavors = [];
     }
 
     addFlavor(name, topping) {
