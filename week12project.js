@@ -17,7 +17,7 @@ class Flavor {
 }
 
 class TeaService {
-    static url = 'https://63501dda78563c1d82b9a7b2.mockapi.io/';
+    static url = 'https://63501dda78563c1d82b9a7b2.mockapi.io/flavors';
 
     static getAllTeas() {
         return $.get(this.url);
