@@ -5,19 +5,21 @@ class Tea {
     }
 
     addFlavor(name, topping) {
+        console.log('adding toppings here', topping);
         this.flavors.push(new Flavor(name, topping));
     }
 }
 
 class Flavor {
     constructor(name, topping) {
+        console.log('this is the class of flavor and topping', Flavor);
         this.name = name;
         this.topping = topping;
     }
 }
 
 class TeaService {
-    static url = 'https://63501dda78563c1d82b9a7b2.mockapi.io/flavors';
+    static url = 'https://63501dda78563c1d82b9a7b2.mockapi.io/teas';
 
     static getAllTeas() {
         return $.get(this.url);
@@ -32,6 +34,7 @@ class TeaService {
     }
 
     static updateTea(tea) {
+        console.log("is this tea working", tea);
         return $.ajax({
             url: this.url + `/${tea._id}`,
             dataType: 'json',
@@ -61,7 +64,10 @@ class DOMManager {
     .then(() => {
         return TeaService.getAllTeas();
     })
-    .then((teas) => this.render(teas));
+    .then((teas) => {
+        console.log('this is create tea method', teas);
+        this.render(teas)
+    });
 }
 
     static deleteTea(id) {
@@ -69,7 +75,10 @@ class DOMManager {
     .then(() => {
         return TeaService.getAllTeas();
     })
-    .then((teas) => this.render(teas));
+    .then((teas) => {
+        console.log(teas);
+        this.render(teas)
+    }); 
 }
 
     static addFlavor(id) {
@@ -80,7 +89,10 @@ class DOMManager {
                 .then(() => {
                     return TeaService.getAllTeas();
                 }) 
-                .then((teas) => this.render(teas));
+                .then((teas) => {
+                    console.log('adding flavor', tea);
+                    this.render(teas)
+                });
             }
         }
     }
@@ -103,9 +115,11 @@ class DOMManager {
     }
 
     static render(teas) {
+        console.log('what is teas doing here', teas);
         this.teas = teas;
         $('#app').empty();
-        for (let tea of teas) {
+        for (let tea of teas) { //this loops thru the array of teas and each element is called tea
+            console.log('tea', teas);
             $('#app').prepend(
             `<div id="${tea._id}" class="card">
                 <div class="card-header">
@@ -128,18 +142,20 @@ class DOMManager {
                 </div>
             </div><br>`
          );
-         for (let flavor of tea.flavors) {
-            $(`#${tea._id}`).find('.card-body').append(
-                `<p>
+         for (let flavor of tea.flavor) {
+            //console.log("is this defined", flavor);
+           $(`#${tea._id}`).find('.card-body').append(
+                `
+                <p>
                 <span id="name-${flavor._id}"><strong>Name: </strong> ${flavor.name}</span>
                 <span id="name-${flavor._id}"><strong>Topping: </strong> ${flavor.topping}</span>
-                <button class="btn btn-danger" onclick="DOMManager.deleteFlavor('${tea._id}','${flavor._id}')">Delete Flavor</button>`
-
+                <button class="btn btn-danger" onclick="DOMManager.deleteFlavor('${tea._id}','${flavor._id}')">Delete Flavor</button>
+                </p>
+                `
             )
          }
     }
  }
-
 }
 
 $('#create-new-tea').click(() => {
