@@ -34,7 +34,7 @@ class TeaService {
     }
 
     static updateTea(tea) {
-        console.log("is this tea working", tea);
+        //console.log("is this tea working", Tea);
         return $.ajax({
             url: this.url + `/${tea._id}`,
             dataType: 'json',
@@ -45,6 +45,7 @@ class TeaService {
     }
 
     static deleteTea(id) {
+        //console.log('testing the delete', Tea);
         return $.ajax({
             url: this.url + `/${id}`,
             type: 'DELETE'
@@ -76,7 +77,7 @@ class DOMManager {
         return TeaService.getAllTeas();
     })
     .then((teas) => {
-        console.log(teas);
+        //console.log(teas);
         this.render(teas)
     }); 
 }
