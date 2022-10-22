@@ -117,8 +117,8 @@ class DOMManager {
                         <div class="row">
                             <div class="col-sm">
                                 <input type ="text" id="${house._id}-room-name" class ="form-control" placeholder="Room Name">
-                        
                             </div>
+                            
                             <div class="col-sm">
                                 <input type ="text" id="${house._id}-room-area" class ="form-control" placeholder="Room Area">
                             </div>
@@ -144,7 +144,7 @@ class DOMManager {
 
 }
 
-$('#create-new-house').on(() => {
+$('#create-new-house').click(() => {
     DOMManager.createHouse($('#new-house-name').val());
     $('#new-house-name').val('');
 });
