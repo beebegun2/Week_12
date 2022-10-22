@@ -1,17 +1,17 @@
-class Tea {
+class Tea { //class creates the object Tea
     constructor(name){
         this.name = name;
         this.flavors = [];
     }
 
-    addFlavor(name, ounce) {
+    addFlavor(name, ounce) { //this adds a new flavor and ounce 
         //console.log('adding ounces here', ounce);
         this.flavors.push(new Flavor(name, ounce));
     }
 }
 
-class Flavor {
-    constructor(name, ounce){
+class Flavor { //class creates the flavor
+    constructor(name, ounce){  //name = name of tea, ounce = size
         //console.log('this is the class of flavor and ounce', Flavor);
         this.name = name;
         this.ounce = ounce;
@@ -117,18 +117,18 @@ class DOMManager {
 
     static render(teas) {
         //console.log('what is teas doing here', teas);
-        this.teas = teas;
+        this.teas = teas
         $('#app').empty();
         for (let tea of teas) { //this loops thru the array of teas and each element is called tea
-            console.log('tea', teas);
+            //console.log('tea', teas);
             //create html for div and btn's. if i make the div id on line 125 tea._id the delete flavor button appears and the flavor name / ounces become undefined
             $('#app').prepend(
             `<div id="${tea._id}" class="card"> 
-                <div class="card-header">
+                <div class="card-header" alert alert-info" role="alert">
                     <h2>${tea.name}</h2>
                         <button class="btn btn-danger" onclick="DOMManager.deleteTea('${tea._id}')">Delete</button> 
                     </div>
-                <div class="card-body">
+                <div class="card-body alert alert-light" role="alert">
                     <div class="card">
                         <div class="row">
                             <div class="col-sm">
@@ -139,10 +139,10 @@ class DOMManager {
                                 <input type ="text" id="${tea._id}-flavor-ounce" class ="form-control" placeholder="Ounces">
                             </div>
                         </div>
-                        <button id="${tea._id}-new-flavor" onclick="DOMManager.addFlavor('${tea._id}')" class="btn btn-primary form-control">Add</button>
+                        <button id="${tea._id}-new-flavor" onclick="DOMManager.addFlavor('${tea._id}')" class="btn btn-outline-infor form-control">Add</button>
                     </div>
                 </div>
-            </div><br>`
+            </div> <br>`
          );
          for (let flavor of tea.flavors) {
             //console.log("is this defined", flavor);
