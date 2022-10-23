@@ -99,7 +99,7 @@ class DOMManager {
         for (let tea of this.teas) {
             if (tea.id == teaId) {
                 for (let flavor of tea.flavors) {
-                    if (flavor.id == flavorName) {
+                    if (flavor.name == flavorName) {
                         tea.flavors.splice(tea.flavors.indexOf(flavor), 1);
                         TeaService.updateTea(tea)
                         .then(() => {
