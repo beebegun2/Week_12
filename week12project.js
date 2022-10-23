@@ -36,7 +36,7 @@ class TeaService {
     
     static updateTea(tea) {
         return $.ajax({
-            url: this.url + `/${tea._id}`,
+            url: this.url + `/${tea.id}`,
             dataType: 'json',
             data: JSON.stringify(tea),
             contentType: 'application/json',
@@ -65,10 +65,9 @@ class DOMManager {
     .then(() => {
         return TeaService.getAllTeas();
     })
-    .then((teas) => {
+    .then((teas) => 
         //console.log('this is create tea method', teas);
-        this.render(teas)
-    });
+        this.render(teas));
 }
 
     static deleteTea(id) {
@@ -76,33 +75,31 @@ class DOMManager {
     .then(() => {
         return TeaService.getAllTeas();
     })
-    .then((teas) => {
+    .then((teas) =>
         //console.log(teas);
-        this.render(teas)
-    }); 
+        this.render(teas)); 
 }
 
     static addFlavor(id) {
     for (let tea of this.teas) {
-        if (tea._id == id) {
-            tea.flavors.push(new Flavor($(`#${tea._id}-flavor-name`).val(), $(`#${tea._id}-flavor-ounce`).val()));
+        if (tea.id == id) {
+            tea.flavors.push(new Flavor($(`#${tea.id}-flavor-name`).val(), $(`#${tea.id}-flavor-ounce`).val()));
             TeaService.updateTea(tea) 
                 .then(() => {
                     return TeaService.getAllTeas();
                 }) 
-                .then((teas) => {
+                .then((teas) =>
                     //console.log('adding flavor', tea);
-                    this.render(teas)
-                });
+                    this.render(teas));
             }
         }
     }
 
     static deleteFlavor(teaId, flavorId) {
         for (let tea of this.teas) {
-            if (tea._id == teaId) {
+            if (tea.id == teaId) {
                 for (let flavor of tea.flavors) {
-                    if (flavor._id == flavorId) {
+                    if (flavor.id == flavorId) {
                         tea.flavors.splice(tea.flavors.indexOf(flavor), 1);
                         TeaService.updateTea(tea)
                         .then(() => {
@@ -123,34 +120,34 @@ class DOMManager {
             //console.log('tea', teas);
             //create html for div and btn's.
             $('#app').prepend(
-            `<div id="${tea._id}" class="card"> 
-                <div class="card-header" alert alert-info" role="alert">
+            `<div id="${tea.id}" class="card"> 
+                <div class="card-header">
                     <h2>${tea.name}</h2>
-                        <button class="btn btn-danger" onclick="DOMManager.deleteTea('${tea._id}')">Delete</button> 
-                    </div>
-                <div class="card-body alert alert-light" role="alert">
+                        <button class="btn btn-danger" onclick="DOMManager.deleteTea('${tea.id}')">Delete</button> 
+                </div>
+                <div class="card-body>
                     <div class="card">
                         <div class="row">
                             <div class="col-sm">
-                                <input type ="text" id="${tea._id}-flavor-name" class ="form-control" placeholder="Flavor Name">
+                                <input type ="text" id="${tea.id}-flavor-name" class ="form-control"  background="transparent"_ placeholder="Flavor Name">
                             </div>
                                 
                             <div class="col-sm">
-                                <input type ="text" id="${tea._id}-flavor-ounce" class ="form-control" placeholder="Ounces">
+                                <input type ="text" id="${tea.id}-flavor-ounce" class ="form-control" background="transparent" placeholder="Ounces">
                             </div>
                         </div>
-                        <button id="${tea._id}-new-flavor" onclick="DOMManager.addFlavor('${tea._id}')" class="btn btn-secondary form-control">Add</button>
+                        <button id="${tea.id}-new-flavor" onclick="DOMManager.addFlavor('${tea.id}')" class="btn btn-secondary form-control">Add</button>
                     </div>
                 </div>
             </div> <br>`
          );
          for (let flavor of tea.flavors) {
             //console.log("is this defined", flavor);
-           $(`#${tea._id}`).find('.card-body').append(
+           $(`#${tea.id}`).find('.card-body').append(
                 `<p>
-                <span id="name-${flavor._id}"><strong>Name: </strong> ${flavor.name}</span>
-                <span id="name-${flavor._id}"><strong>Ounce: </strong> ${flavor.ounce}</span>
-                <button class="btn btn-danger" onclick="DOMManager.deleteFlavor('${tea._id}','${flavor._id}')">Delete Flavor</button>
+                <span id="name-${flavor.id}"><strong>Name: </strong> ${flavor.name}</span>
+                <span id="name-${flavor.id}"><strong>Ounce: </strong> ${flavor.ounce}</span>
+                <button class="btn btn-danger" onclick="DOMManager.deleteFlavor('${tea.id}','${flavor.id}')">Delete Flavor</button>
                 </p>
                 `
             )
