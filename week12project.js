@@ -139,7 +139,7 @@ class DOMManager {
                                 <input type ="text" id="${tea._id}-flavor-ounce" class ="form-control" placeholder="Ounces">
                             </div>
                         </div>
-                        <button id="${tea._id}-new-flavor" onclick="DOMManager.addFlavor('${tea._id}')" class="btn btn-outline-infor form-control">Add</button>
+                        <button id="${tea._id}-new-flavor" onclick="DOMManager.addFlavor('${tea._id}')" class="btn btn-secondary form-control">Add</button>
                     </div>
                 </div>
             </div> <br>`
