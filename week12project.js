@@ -95,11 +95,11 @@ class DOMManager {
         }
     }
 
-    static deleteFlavor(teaId, flavorId) {
+    static deleteFlavor(teaId, flavorName) {
         for (let tea of this.teas) {
             if (tea.id == teaId) {
                 for (let flavor of tea.flavors) {
-                    if (flavor.id == flavorId) {
+                    if (flavor.id == flavorName) {
                         tea.flavors.splice(tea.flavors.indexOf(flavor), 1);
                         TeaService.updateTea(tea)
                         .then(() => {
@@ -125,11 +125,11 @@ class DOMManager {
                     <h2>${tea.name}</h2>
                         <button class="btn btn-danger" onclick="DOMManager.deleteTea('${tea.id}')">Delete</button> 
                 </div>
-                <div class="card-body>
+                <div class="card-body">
                     <div class="card">
                         <div class="row">
                             <div class="col-sm">
-                                <input type ="text" id="${tea.id}-flavor-name" class ="form-control"  background="transparent"_ placeholder="Flavor Name">
+                                <input type ="text" id="${tea.id}-flavor-name" class ="form-control"  background="transparent" placeholder="Flavor Name">
                             </div>
                                 
                             <div class="col-sm">
@@ -145,9 +145,9 @@ class DOMManager {
             //console.log("is this defined", flavor);
            $(`#${tea.id}`).find('.card-body').append(
                 `<p>
-                <span id="name-${flavor.id}"><strong>Name: </strong> ${flavor.name}</span>
-                <span id="name-${flavor.id}"><strong>Ounce: </strong> ${flavor.ounce}</span>
-                <button class="btn btn-danger" onclick="DOMManager.deleteFlavor('${tea.id}','${flavor.id}')">Delete Flavor</button>
+                <span id="name-${flavor.name}"><strong>Name: </strong> ${flavor.name}</span>
+                <span id="name-${flavor.name}"><strong>Ounce: </strong> ${flavor.ounce}</span>
+                <button class="btn btn-danger" onclick="DOMManager.deleteFlavor('${tea.id}','${flavor.name}')">Delete Flavor</button>
                 </p>
                 `
             )
