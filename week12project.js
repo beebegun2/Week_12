@@ -121,7 +121,7 @@ class DOMManager {
         $('#app').empty();
         for (let tea of teas) { //this loops thru the array of teas and each element is called tea
             //console.log('tea', teas);
-            //create html for div and btn's. if i make the div id on line 125 tea._id the delete flavor button appears and the flavor name / ounces become undefined
+            //create html for div and btn's.
             $('#app').prepend(
             `<div id="${tea._id}" class="card"> 
                 <div class="card-header" alert alert-info" role="alert">
